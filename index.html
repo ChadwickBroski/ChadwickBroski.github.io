@@ -8,8 +8,8 @@
     <style>
         html {
             filter: sepia(100%);
-            background-color: #121212; /* dark background */
-            color: #e0c097; /* warm, light sepia-ish text */
+            background-color: #121212;
+            color: #e0c097;
         }
         h1 {
             font-family: "Nunito";
@@ -21,7 +21,7 @@
             margin-bottom: 0;
             font-size:800%;
             user-select: none;
-            color: inherit; /* use the html color */
+            color: inherit;
         }
         input[type="text"] {
             display: block;
@@ -30,10 +30,10 @@
             height: 50px;
             border: none;
             border-radius: 30px;
-            background-color: #2a2a2a; /* dark input background */
-            color: #e0c097; /* sepia-ish text */
+            background-color: #2a2a2a;
+            color: #e0c097;
             box-shadow: rgba(255, 255, 255, 0.05) 0px 1px 3px 0px,
-                        rgba(224, 192, 151, 0.3) 0px 0px 0px 1px; /* inverted shadows with sepia tint */
+                        rgba(224, 192, 151, 0.3) 0px 0px 0px 1px;
             padding-left: 50px;
             font-size: 18px;
             font-family: "Nunito", sans-serif;
@@ -47,9 +47,8 @@
             font-size: 18px;
             font-family: "Nunito", sans-serif;
             user-select: none;
-            color: #bfa67a; /* softer sepia placeholder */
+            color: #bfa67a;
         }
-        /* Adjust the search icon color to a lighter sepia */
         i.fas.fa-search {
             color: #e0c097;
             text-shadow: 0 0 5px rgba(224, 192, 151, 0.7);
@@ -58,8 +57,14 @@
 </head>
 <body>
     <h1><i>Fetch</i></h1>
-    <i class="fas fa-search" style="transform: translateY(38px) translateX(255px); font-size: 20px;"></i>
-    <input id="input" type="text" placeholder="Fetch For Anything on Wikipedia" spellcheck="false" autocomplete="off">
+
+    <!-- FIXED SEARCH ICON CONTAINER -->
+    <div style="position: relative; width: 750px; margin: 0 auto;">
+        <i class="fas fa-search" 
+           style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); font-size: 20px; color: #e0c097;">
+        </i>
+        <input id="input" type="text" placeholder="Fetch For Anything on Wikipedia" spellcheck="false" autocomplete="off">
+    </div>
 
     <script src="FullPage.js"></script>
 </body>
