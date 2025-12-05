@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -8,8 +8,8 @@
     <style>
         html {
             filter: sepia(100%);
-            background-color: #121212; /* dark background */
-            color: #e0c097; /* warm, light sepia-ish text */
+            background-color: #121212;
+            color: #e0c097;
         }
         input[type="text"] {
             display: block;
@@ -18,10 +18,10 @@
             height: 50px;
             border: none;
             border-radius: 30px;
-            background-color: #2a2a2a; /* dark input background */
-            color: #e0c097; /* sepia-ish text */
+            background-color: #2a2a2a;
+            color: #e0c097;
             box-shadow: rgba(255, 255, 255, 0.05) 0px 1px 3px 0px,
-                        rgba(224, 192, 151, 0.3) 0px 0px 0px 1px; /* inverted shadows with sepia tint */
+                        rgba(224, 192, 151, 0.3) 0px 0px 0px 1px;
             padding-left: 50px;
             font-size: 18px;
             font-family: "Nunito", sans-serif;
@@ -35,17 +35,11 @@
             font-size: 18px;
             font-family: "Nunito", sans-serif;
             user-select: none;
-            color: #bfa67a; /* softer sepia placeholder */
+            color: #bfa67a;
         }
-        /* Adjust the search icon color to a lighter sepia */
         i.fas.fa-search {
             color: #e0c097;
             text-shadow: 0 0 5px rgba(224, 192, 151, 0.7);
-            position: absolute;
-            left: 45%;
-            top: 115px;
-            font-size: 20px;
-            transform: translateY(20px) translateX(-320px);
         }
         .wikipedia {
             font-family: "Nunito", sans-serif;
@@ -70,7 +64,6 @@
             position: relative;
             padding-bottom: 0.3em;
         }
-        /* long underline spanning full width below H2 */
         .wikipedia h2::after {
             content: "";
             position: absolute;
@@ -81,33 +74,16 @@
             background-color: #e0c097;
             opacity: 0.7;
         }
-        .wikipedia h3 {
-            font-size: 2em;
-            margin-bottom: 0.5em;
-            user-select: text;
-        }
-        .wikipedia h4 {
-            font-size: 1.5em;
-            margin-bottom: 0.5em;
-            user-select: text;
-        }
-        .wikipedia h5 {
-            font-size: 1.2em;
-            margin-bottom: 0.5em;
-            user-select: text;
-        }
-        .wikipedia h6 {
-            font-size: 1em;
-            margin-bottom: 0.5em;
-            user-select: text;
-        }
+        .wikipedia h3 { font-size: 2em; margin-bottom: 0.5em; user-select: text; }
+        .wikipedia h4 { font-size: 1.5em; margin-bottom: 0.5em; user-select: text; }
+        .wikipedia h5 { font-size: 1.2em; margin-bottom: 0.5em; user-select: text; }
+        .wikipedia h6 { font-size: 1em; margin-bottom: 0.5em; user-select: text; }
         .wikipedia p {
             font-size: 20px;
             line-height: 1.5em;
             margin-bottom: 1em;
             user-select: text;
         }
-        /* Remove underline from links and disable clicks */
         .wikipedia a {
             text-decoration: none !important;
             pointer-events: none;
@@ -130,14 +106,18 @@
 </head>
 <body>
     <a href="index.html"><h1><i>Fetch</i></h1></a>
-    <i class="fas fa-search"></i>
-    
-    <input type="text" id="searchInput" spellcheck="false" autocomplete="off" placeholder="Search Wikipedia"/>
+
+    <!-- FIXED SEARCH ICON CONTAINER -->
+    <div style="position: relative; width: 750px; margin: 50px auto 10px auto;">
+        <i class="fas fa-search"
+           style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); font-size: 20px; color: #e0c097;">
+        </i>
+        <input type="text" id="searchInput" spellcheck="false" autocomplete="off" placeholder="Search Wikipedia">
+    </div>
 
     <div id="wikiContent" class="wikipedia">Loading...</div>
 
     <script>
-        // Get the query string from URL
         const params = new URLSearchParams(window.location.search);
         const query = params.get("query") || "";
 
@@ -170,33 +150,20 @@
                 const tempDiv = document.createElement("div");
                 tempDiv.innerHTML = htmlString;
 
-                // Remove the small superscript numbers at the top (usually citations)
                 tempDiv.querySelectorAll("sup.reference").forEach(el => el.remove());
+                tempDiv.querySelectorAll("a").forEach(a => { a.removeAttribute("href"); });
 
-                // Remove all links inside content (to avoid errors on clicking)
-                tempDiv.querySelectorAll("a").forEach(a => {
-                    a.removeAttribute("href");
-                });
-
-                // Extract relevant elements: headings and paragraphs
                 const contentElements = tempDiv.querySelectorAll("h1, h2, h3, h4, h5, h6, p");
 
-                // Clear previous content
                 output.innerHTML = "";
 
-                // Insert an h1 with capitalized searched term
                 const h1 = document.createElement("h1");
                 h1.textContent = title.charAt(0).toUpperCase() + title.slice(1).toLowerCase();
                 output.appendChild(h1);
 
-                // Append other content elements
                 contentElements.forEach(el => {
-                    // Skip original h1 in content (because we added custom h1)
                     if(el.tagName.toLowerCase() === "h1") return;
-
-                    // Clone the element to avoid side effects
-                    const clone = el.cloneNode(true);
-                    output.appendChild(clone);
+                    output.appendChild(el.cloneNode(true));
                 });
 
             } catch (error) {
@@ -204,7 +171,6 @@
             }
         }
 
-        // When user presses Enter inside search input on show.html, reload page with new query param
         input.addEventListener("keydown", (event) => {
             if(event.key === "Enter") {
                 event.preventDefault();
