@@ -1,10 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Thing</title>
-  </head>
-  <body>
-    <h1>Heading</h1>
-    <p>MONEKNDKSODNLA</p>
-  </body>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        html {
+            filter: sepia(100%);
+            background-color: #121212; /* dark background */
+            color: #e0c097; /* warm, light sepia-ish text */
+        }
+        h1 {
+            font-family: "Nunito";
+            font-weight: 1;
+            display:flex; 
+            justify-content:center; 
+            align-items:center;
+            margin-top: 100px;
+            margin-bottom: 0;
+            font-size:800%;
+            user-select: none;
+            color: inherit; /* use the html color */
+        }
+        input[type="text"] {
+            display: block;
+            margin: 0 auto;
+            width: 750px;
+            height: 50px;
+            border: none;
+            border-radius: 30px;
+            background-color: #2a2a2a; /* dark input background */
+            color: #e0c097; /* sepia-ish text */
+            box-shadow: rgba(255, 255, 255, 0.05) 0px 1px 3px 0px,
+                        rgba(224, 192, 151, 0.3) 0px 0px 0px 1px; /* inverted shadows with sepia tint */
+            padding-left: 50px;
+            font-size: 18px;
+            font-family: "Nunito", sans-serif;
+            transition: 0.4s;
+        }
+        input[type="text"]:focus {
+            box-shadow: rgba(224, 192, 151, 0.5) 0px 7px 29px 0px;
+            outline: none;
+        }
+        input::placeholder {
+            font-size: 18px;
+            font-family: "Nunito", sans-serif;
+            user-select: none;
+            color: #bfa67a; /* softer sepia placeholder */
+        }
+        /* Adjust the search icon color to a lighter sepia */
+        i.fas.fa-search {
+            color: #e0c097;
+            text-shadow: 0 0 5px rgba(224, 192, 151, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <h1><i>Fetch</i></h1>
+    <i class="fas fa-search" style="transform: translateY(38px) translateX(255px); font-size: 20px;"></i>
+    <input id="input" type="text" placeholder="Fetch For Anything on Wikipedia" spellcheck="false" autocomplete="off">
+
+    <script src="FullPage.js"></script>
+</body>
 </html>
