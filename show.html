@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title id="dynamicTitle">Fetch</title>
+    <meta id="dynamicDescription" name="description" content="Search Wikipedia instantly with Fetch.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
@@ -123,6 +125,15 @@
 
         const input = document.getElementById("searchInput");
         const output = document.getElementById("wikiContent");
+        // Set dynamic title
+        const pageTitle = document.getElementById("dynamicTitle");
+        const metaDescription = document.getElementById("dynamicDescription");
+
+        if (query) {
+            const formatted = query.charAt(0).toUpperCase() + query.slice(1);
+            pageTitle.textContent = `Fetch - ${formatted}`;
+            metaDescription.setAttribute("content", `Wikipedia results for ${formatted} fetched instantly.`);
+        }
 
         input.value = query;
         input.focus();
